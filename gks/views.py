@@ -46,6 +46,7 @@ def result(request):
         'johnson_diagram': johnson_diagram,
         'criteria': all_standard,
         'criteria_diagram': standard_diagram,
-        'criteria_plan': standard_plan
+        'criteria_plan': standard_plan,
+        'length': range(36)
     }
     return render(request, 'gks/result.html', context)
