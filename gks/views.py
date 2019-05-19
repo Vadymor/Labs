@@ -38,6 +38,7 @@ def result(request):
     ans, all_compromise = lb.create_r(matrix)
     standard_plan = lb.full_bout(matrix)[ans]
     standard_diagram = lb.create_diagram(matrix, standard_plan)
+    del standard_diagram[0]
 
     context = {
         'matrix': matrix,
