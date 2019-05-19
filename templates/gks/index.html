@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Введіть кількість деталей</p>
+    <form action="{% url 'gks:table' %}" method="get">
+        <input type="number" name="amount" step="1">
+        <input type="submit" value="Далі">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>Введіть матрицю тривалостей обробки</p>
+    <form action="{% url 'gks:result' %}">
+        <table>
+            {% for i in amount %}
+                <tr>
+                    {% for j in column %}
+                        <th>
+                        <input type="number" name="matrix" step="1">
+                        </th>
+
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Розв'язати">
+    </form>
+</body>
+</html>
