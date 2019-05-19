@@ -32,34 +32,21 @@
     <text x="0" y="200">ГВМ2</text>
     <text x="0" y="240">ГВМ3</text>
 
-{#  <rect x="50" y="140" width="40" height="40" style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="65" y="160">2</text>#}
-{#  <rect x="90" y="180" width="40" height="40" style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="105" y="200">2</text>#}
-{#  <rect x="130" y="220" width="200" height="40" style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="225" y="240">2</text>#}
-{##}
-{#  <rect x="90" y="140" width="40" height="40" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="105" y="160">1</text>#}
-{#  <rect x="130" y="180" width="160" height="40" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="210" y="200">1</text>#}
-{#  <rect x="330" y="220" width="240" height="40" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="440" y="240">1</text>#}
-{##}
-{#  <rect x="130" y="140" width="80" height="40" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="165" y="160">3</text>#}
-{#  <rect x="290" y="180" width="240" height="40" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="415" y="200">3</text>#}
-{#  <rect x="570" y="220" width="240" height="40" style="fill:rgb(0,255,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="680" y="240">3</text>#}
-{##}
-{#  <rect x="210" y="140" width="120" height="40" style="fill:rgb(0,125,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="265" y="160">4</text>#}
-{#  <rect x="530" y="180" width="160" height="40" style="fill:rgb(0,125,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="605" y="200">4</text>#}
-{#  <rect x="810" y="220" width="40" height="40" style="fill:rgb(0,125,0);stroke-width:3;stroke:rgb(0,0,0)" />#}
-{#  <text x="825" y="240">4</text>#}
+
+    {% for i in johnson_diagram %}
+        {% with forloop.counter0|color as var1%}
+        {% for j in i %}
+            <rect x="{{ j|x_pos }}" y="{{ forloop.counter0|y_pos }}" width="{{ j|length }}" height="40" style="fill:rgb{{ var1 }};stroke-width:3;stroke:rgb(0,0,0)" />
+        {% endfor %}
+        {% endwith %}
+    {% endfor %}
 
 </svg>
+    {% for i in johnson_diagram %}
+        {% for j in i %}
+            <p>{{ j }}</p>
+        {% endfor %}
+        <p>{{ forloop.counter }}</p>
+    {% endfor %}
 </body>
 </html>
