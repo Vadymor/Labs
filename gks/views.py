@@ -21,6 +21,7 @@ def table(request):
 
 
 def result(request):
+    choice_criteria = [int(i) for i in request.GET.getlist('criteria')]
     time_prepare = request.GET.getlist('matrix')
     length = len(time_prepare)
     time_prepare = np.asarray(time_prepare, dtype="float64").reshape(int(length/3), -1).tolist()
@@ -33,12 +34,16 @@ def result(request):
 
     all_standard = []
     for i in lb.full_bout(matrix):
-        all_standard.append(lb.standard(lb.create_diagram(matrix, i)))
+        all_standard.append(lb.standard(lb.create_diagram(matrix, i), choice_criteria))
 
-    ans, all_compromise = lb.create_r(matrix)
+    ans, all_compromise = lb.create_r(matrix, choice_criteria)
     standard_plan = lb.full_bout(matrix)[ans]
     standard_diagram = lb.create_diagram(matrix, standard_plan)
     del standard_diagram[0]
+
+    for i in range(len(all_standard)):
+        all_standard[i].append(all_compromise[i])
+        all_standard[i].insert(0, lb.full_bout(matrix)[i])
 
     context = {
         'matrix': matrix,
@@ -47,6 +52,9 @@ def result(request):
         'criteria': all_standard,
         'criteria_diagram': standard_diagram,
         'criteria_plan': standard_plan,
-        'length': range(36)
+        'length': range(36),
+        'choice_criteria': choice_criteria,
+        'all_compromise': all_compromise,
+        'name': lb.full_bout(matrix)
     }
     return render(request, 'gks/result.html', context)

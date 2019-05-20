@@ -48,5 +48,52 @@
 
 
 </svg>
+<table border="1px">
+    <caption>усі критерії</caption>
+    {% for i in criteria %}
+        <tr>
+            {% for j in i %}
+                <td>{{ j }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{{ criteria_plan }}
+
+
+
+<svg height="500" width="1600">
+    <line x1="50" y1="100" x2="50" y2="300" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+    <line x1="50" y1="300" x2="1500" y2="300" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+
+    <line x1="50" y1="100" x2="40" y2="110" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+    <line x1="50" y1="100" x2="60" y2="110" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+    <line x1="1500" y1="300" x2="1490" y2="290" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+    <line x1="1500" y1="300" x2="1490" y2="310" style="stroke:rgb(255,0,0);stroke-width:2" ></line>
+
+    {% for  i in length %}
+        <text x="{{ i|position }}" y="315">{{ i }}</text>
+
+    {% endfor %}
+    <text x="0" y="160">ГВМ1</text>
+    <text x="0" y="200">ГВМ2</text>
+    <text x="0" y="240">ГВМ3</text>
+
+
+    {% for i in criteria_diagram %}
+        {% with forloop.counter0|color as var1%}
+        {% for j in i %}
+            <rect x="{{ j|x_pos }}" y="{{ forloop.counter0|y_pos }}" width="{{ j|length }}" height="40" style="fill:rgb{{ var1 }};stroke-width:3;stroke:rgb(0,0,0)" ></rect>
+        {% endfor %}
+         <rect x="{{ forloop.counter0|legend_x }}" y="350" height="40" width="40" style="fill:rgb{{ var1 }};stroke-width:3;stroke:rgb(0,0,0)"></rect>
+        {% endwith %}
+    {% endfor %}
+
+    {% for i in criteria_plan %}
+        <text x="{{ forloop.counter0|legend_text }}" y="370">{{ i }}</text>
+    {% endfor %}
+
+
+</svg>
 </body>
 </html>

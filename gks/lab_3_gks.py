@@ -79,14 +79,13 @@ def full_bout(matrix):
     return list(itertools.permutations([key for key in matrix]))
 
 
-def standard(diagram):
+def standard(diagram, choice_criteria):
     """
     calculate standard
     :param diagram:
     :return:
     """
     max_time = diagram[-1][-1][-1]
-
     k_1_1 = max_time
     k_1_2 = max_time
     k_1_3 = max_time
@@ -163,27 +162,32 @@ def standard(diagram):
     k_3_3 = sum(sum_of)
 
     k_3_4 = k_3_2 / 3
-    k_3_5 = k_3_2 / 3
+    k_3_5 = k_3_3 / 3
 
     k_3_6 = round(k_3_3 / 3, 3)
     k_3_7 = round(k_3_3 / (len(diagram)-1), 3)
-    list_standard = [k_1_1, k_1_2, k_1_3, k_2_1, k_2_2, k_2_3, k_2_4, k_2_5, k_2_6, k_2_7, k_3_1, k_3_2, k_3_3, k_3_4, k_3_5, k_3_6, k_3_7]
+    list_standard = [k_1_1, k_1_2, k_1_3, k_2_1, k_2_2, k_2_3, k_2_4, k_2_5, k_2_6, k_2_7, k_3_1, k_3_2, k_3_3, k_3_4,
+                     k_3_5, k_3_6, k_3_7]
     list_standard = [round(i, 3) for i in list_standard]
-    return list_standard
+    list_criteria = []
+    for i in range(len(list_standard)):
+        if i in choice_criteria:
+            list_criteria.append(list_standard[i])
+    return list_criteria
 
 
-def create_optimize(matrix):
+def create_optimize(matrix, choice):
     """
     :param matrix:
     :return: extreme of standard
     """
     all_bout = []
     for i in full_bout(matrix):
-        all_bout.append(standard(create_diagram(matrix, i)))
+        all_bout.append(standard(create_diagram(matrix, i), choice))
 
     all_column = np.array(all_bout).transpose()
     extreme = []
-    for i in range(17):
+    for i in range(len(choice)):
         if i in (3, 4):
             extreme.append(max(all_column[i]))
         else:
@@ -191,9 +195,9 @@ def create_optimize(matrix):
     return extreme, all_bout
 
 
-def create_r(matrix):
+def create_r(matrix, choice):
 
-    extreme_values, all_bout = create_optimize(matrix)
+    extreme_values, all_bout = create_optimize(matrix, choice)
     compromise = []
     for i in range(len(all_bout)):
         temp = []
@@ -217,13 +221,10 @@ def create_r(matrix):
 #     #     '3': [2, 6, 6],
 #     #     '4': [3, 4, 1]
 #     # }
-#     # print(johnson(matr))
-#     # print(create_diagram(matr, johnson(matr)))
-#     # print(full_bout(matr))
-#     # print(standard(create_diagram(matr, full_bout(matr)[0])))
-#     ans, all_compromise = create_r(matr)
-#     print(ans)
-#     print(full_bout(matr)[ans])
-#     print(create_diagram(matr, full_bout(matr)[ans]))
-#     print(johnson(matr))
+#     choice = [1, 4, 6, 8, 9]
+#     # for i in full_bout(matr):
+#     #     print(standard(create_diagram(matr, i), choice))
+#
+#     # print(create_optimize(matr, choice))
+#     print(create_r(matr, choice))
 
