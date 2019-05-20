@@ -28,3 +28,15 @@ def length(pos):
 def color(num):
     color = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))
     return color
+
+
+@register.filter(name='legend_x')
+def legend_x(k):
+    return 50 + 100 * k
+
+
+@register.filter(name='legend_text')
+def legend_x(k):
+    return 100 + 100 * k
+
+
