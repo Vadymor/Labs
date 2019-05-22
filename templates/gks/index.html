@@ -7,7 +7,7 @@
 <body>
     <p>Введіть кількість деталей</p>
     <form action="{% url 'gks:table' %}" method="get">
-        <input type="number" name="amount" step="1">
+        <input type="number" name="amount" step="1" min="1" max="7">
         <input type="submit" value="Далі">
     </form>
 

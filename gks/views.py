@@ -22,6 +22,13 @@ def table(request):
 
 def result(request):
     choice_criteria = [int(i) for i in request.GET.getlist('criteria')]
+    all_criteria = [1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7,\
+                    3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7]
+    table_caption = ['']
+    for i in range(len(all_criteria)):
+        if i in choice_criteria:
+            table_caption.append(all_criteria[i])
+    table_caption.append('R')
     time_prepare = request.GET.getlist('matrix')
     length = len(time_prepare)
     time_prepare = np.asarray(time_prepare, dtype="float64").reshape(int(length/3), -1).tolist()
@@ -55,6 +62,7 @@ def result(request):
         'length': range(36),
         'choice_criteria': choice_criteria,
         'all_compromise': all_compromise,
-        'name': lb.full_bout(matrix)
+        'name': lb.full_bout(matrix),
+        'table_caption': table_caption
     }
     return render(request, 'gks/result.html', context)
