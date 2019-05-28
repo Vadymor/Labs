@@ -26,8 +26,8 @@ def length(pos):
 
 @register.filter(name='color')
 def color(num):
-    color = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))
-    return color
+    color_rgb = [(120, 0, 0), (0, 120, 0), (0, 0, 120), (225, 225, 0), (225, 0, 225), (225, 120, 120)]
+    return color_rgb[num-1]
 
 
 @register.filter(name='legend_x')
