@@ -51,7 +51,7 @@ def result(request):
     for i in range(len(all_standard)):
         all_standard[i].append(round(all_compromise[i], 3))
         all_standard[i].insert(0, lb.full_bout(matrix)[i])
-    #set of colors
+    # set of colors
     color_rgb = [(120, 0, 0), (0, 120, 0), (0, 0, 120), (120, 120, 0), (120, 0, 120), (120, 120, 120)]
 
     johnson_dict = {}
