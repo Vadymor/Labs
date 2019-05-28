@@ -49,8 +49,18 @@ def result(request):
     del standard_diagram[0]
 
     for i in range(len(all_standard)):
-        all_standard[i].append(all_compromise[i])
+        all_standard[i].append(round(all_compromise[i], 3))
         all_standard[i].insert(0, lb.full_bout(matrix)[i])
+    #set of colors
+    color_rgb = [(120, 0, 0), (0, 120, 0), (0, 0, 120), (120, 120, 0), (120, 0, 120), (120, 120, 120)]
+
+    johnson_dict = {}
+    for i in range(len(johnson_plan)):
+        johnson_dict[johnson_plan[i]] = johnson_diagram[i]
+
+    standard_dict = {}
+    for i in range(len(standard_plan)):
+        standard_dict[standard_plan[i]] = standard_diagram[i]
 
     context = {
         'matrix': matrix,
@@ -63,6 +73,9 @@ def result(request):
         'choice_criteria': choice_criteria,
         'all_compromise': all_compromise,
         'name': lb.full_bout(matrix),
-        'table_caption': table_caption
+        'table_caption': table_caption,
+        'color_rgb': color_rgb,
+        'johnson_dict': johnson_dict,
+        'criteria_dict': standard_dict
     }
     return render(request, 'gks/result.html', context)

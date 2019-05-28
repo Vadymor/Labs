@@ -38,8 +38,8 @@
     <text x="0" y="240">ГВМ3</text>
 
 
-    {% for i in johnson_diagram %}
-        {% with forloop.counter0|color as var1%}
+    {% for k, i in johnson_dict.items %}
+        {% with k|color as var1%}
         {% for j in i %}
             <rect x="{{ j|x_pos }}" y="{{ forloop.counter0|y_pos }}" width="{{ j|length }}" height="40" style="fill:rgb{{ var1 }};stroke-width:3;stroke:rgb(0,0,0)" ></rect>
         {% endfor %}
@@ -90,8 +90,8 @@
     <text x="0" y="240">ГВМ3</text>
 
 
-    {% for i in criteria_diagram %}
-        {% with forloop.counter0|color as var1%}
+    {% for k, i in criteria_dict.items %}
+        {% with k|color as var1%}
         {% for j in i %}
             <rect x="{{ j|x_pos }}" y="{{ forloop.counter0|y_pos }}" width="{{ j|length }}" height="40" style="fill:rgb{{ var1 }};stroke-width:3;stroke:rgb(0,0,0)" ></rect>
         {% endfor %}
