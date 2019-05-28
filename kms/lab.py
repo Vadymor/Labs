@@ -43,4 +43,9 @@ def result():
                      np.matmul(np.matrix.transpose(f), np.array(y)))
     minmax = np.matmul(np.matrix.transpose(alpha), b_rm)
 
-    return b_c, answer, alpha_js, minmax
+    w, v = np.linalg.eig(np.matmul(np.matrix.transpose(f), f))
+    max_w = []
+    for i in v:
+        max_w.append(max(i))
+
+    return b_c, answer, alpha_js, minmax, max_w

@@ -50,9 +50,16 @@
         </tr>
     </table>
 
-{{ b_c }}
-{{ answer }}
-{{ alpha_js }}
-{{ minmax }}
+    {% for i in b_c %}
+        <p>{{ i }}</p>
+    {% endfor %}
+    <p>Параметр стаб: {{ answer }}</p>
+    {% for i in alpha_js %}
+        <p>{{ i }}</p>
+    {% endfor %}
+    <p>Мінмакс:{{ minmax }}</p>
+    {% for i in max_w %}
+        <p>Оцінка коеф регрессії на головних компонентах{{ i }}</p>
+    {% endfor %}
 </body>
 </html>
