@@ -6,11 +6,12 @@ from . import lab
 
 
 def index(request):
-    b_c, answer, alpha_js, minmax = lab.result()
+    b_c, answer, alpha_js, minmax, max_w = lab.result()
     context = {
         'b_c': [i.tolist() for i in b_c],
         'answer': answer,
         'alpha_js': alpha_js,
-        'minmax': minmax
+        'minmax': minmax,
+        'max_w': max_w
     }
     return render(request, 'kms/index.html', context)
