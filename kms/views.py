@@ -7,6 +7,7 @@ from . import lab
 
 def index(request):
     b_c, answer, alpha_js, minmax, max_w = lab.result()
+    # np.random.randn()
     context = {
         'b_c': [i.tolist() for i in b_c],
         'answer': answer,

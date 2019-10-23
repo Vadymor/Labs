@@ -96,11 +96,11 @@ def standard(diagram, choice_criteria):
         for j in range(len(diagram) - 1):
             temp.append(abs(diagram[j][i][1] - diagram[j + 1][i][0]))
         t_p.append(temp)
-
+    #print(t_p)
     t_r = []
     for i in range(3):
         t_r.append(diagram[-1][i][1] - sum(t_p[i]))
-
+    #print(t_r)
     k_z = []
     for i in range(3):
         k_z.append(t_r[i] / diagram[-1][i][1])
@@ -208,23 +208,24 @@ def create_r(matrix, choice):
     return answer, compromise
 
 
-# if __name__ == "__main__":
-#     matr = {
-#         '1': [3, 4, 4],
-#         '2': [6, 3, 3],
-#         '3': [4, 5, 4],
-#         '4': [5, 2, 6]
-#     }
-#     # matr = {
-#     #     '1': [1, 4, 6],
-#     #     '2': [1, 1, 5],
-#     #     '3': [2, 6, 6],
-#     #     '4': [3, 4, 1]
-#     # }
-#     choice = [1, 4, 6, 8, 9]
-#     # for i in full_bout(matr):
-#     #     print(standard(create_diagram(matr, i), choice))
-#
-#     # print(create_optimize(matr, choice))
-#     print(create_r(matr, choice))
+if __name__ == "__main__":
+    matr = {
+        '1': [3, 4, 4],
+        '2': [6, 3, 3],
+        '3': [4, 5, 4],
+        '4': [5, 2, 6]
+    }
+    # matr = {
+    #     '1': [1, 4, 6],
+    #     '2': [1, 1, 5],
+    #     '3': [2, 6, 6],
+    #     '4': [3, 4, 1]
+    # }
+    choice = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    for i in full_bout(matr):
+        print(standard(create_diagram(matr, i), choice))
+        #standard(create_diagram(matr, i), choice)
+
+    # print(create_optimize(matr, choice))
+    # print(standard(create_diagram(matr, full_bout(matr)), choice))
 
